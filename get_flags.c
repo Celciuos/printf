@@ -9,37 +9,27 @@
  */
 int get_flags(const char *format, int *i)
 {
-    int curr_i = *i + 1;
-    int flags = 0;
+	/* - + 0 # ' ' */
+	/* 1 2 4 8  16 */
+	int j, curr_i;
+	int flags = 0;
+	const char FLAGS_CH[] = {'-', '+', '0', '#', ' ', '\0'};
+	const int FLAGS_ARR[] = {F_MINUS, F_PLUS, F_ZERO, F_HASH, F_SPACE, 0};
 
-    switch (format[curr_i])
-    {
-        case '-':
-            flags |= F_MINUS;
-            curr_i++;
-            break;
-        case '+':
-            flags |= F_PLUS;
-            curr_i++;
-            break;
-        case '0':
-            flags |= F_ZERO;
-            curr_i++;
-            break;
-        case '#':
-            flags |= F_HASH;
-            curr_i++;
-            break;
-        case ' ':
-            flags |= F_SPACE;
-            curr_i++;
-            break;
-        default:
-            break;
-    }
+	for (curr_i = *i + 1; format[curr_i] != '\0'; curr_i++)
+	{
+		for (j = 0; FLAGS_CH[j] != '\0'; j++)
+			if (format[curr_i] == FLAGS_CH[j])
+			{
+				flags |= FLAGS_ARR[j];
+				break;
+			}
 
-    *i = curr_i - 1;
+		if (FLAGS_CH[j] == 0)
+			break;
+	}
 
-    return flags;
+	*i = curr_i - 1;
+
+	return (flags);
 }
-
