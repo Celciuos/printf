@@ -10,18 +10,18 @@
  */
 int print_rev(va_list l, flags_t *f)
 {
-	int i, j = 0; // <--- initialze two int vars?
-	char *s = va_arg(l, char *); // <--- get character pointer containing the next argument
+	int i, j = 0;
+	char *s = va_arg(l, char *);
 
-	(void)f; // <-- discarding f by casting it void
+	(void)f;
 	
-	if (!s)// <-- checks if s returned a value
-		s = "(null)";//<--- returns a string for s 
+	if (!s)
+		s = "(null)";
 
-	while (s[i])// <--- iterates through s
-		i++;//<--- essentially counts s
+	while (s[i])
+		i++;
 
-	for (i = i - 1; i >= 0; i--)//<---
+	for (i = i - 1; i >= 0; i--)
 	{
 		_putchar(s[i]);
 		j++;
@@ -32,6 +32,7 @@ int print_rev(va_list l, flags_t *f)
 	return (j);
 }
 
+/*
 int print_reverse(va_list types,int precision)
 {
 	int i, count = 0;// <-- initialize two int vars
@@ -58,3 +59,4 @@ int print_reverse(va_list types,int precision)
 	}
 	return (count); //<--- returns count which is the actual number of characters printed to stdout
 }
+*/
